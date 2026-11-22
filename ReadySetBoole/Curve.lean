@@ -26,6 +26,28 @@ private def u32Max : UInt32 := (0xffffffff : UInt32)
 def map (x y : UInt16) : Float :=
   (morton x y).toFloat / u32Max.toFloat
 
+/-- Decimal string for `map` (Lean's Float printer is %.6f and hides tiny values). -/
+def mapToString (x y : UInt16) : String :=
+  let num := (morton x y).toNat
+  let den := u32Max.toNat
+  if num == 0 then "0"
+  else if num == den then "1"
+  else
+    Id.run do
+      let mut rem := num
+      let mut s := "0."
+      for _ in [:20] do
+        rem := rem * 10
+        let digit := rem / den
+        s := s ++ toString digit
+        rem := rem % den
+        if rem == 0 then break
+      -- trim trailing zeros
+      let chars := s.toList
+      let trimmed := chars.reverse.dropWhile (· == '0') |>.reverse
+      let trimmed := if trimmed.getLast? == some '.' then trimmed.dropLast else trimmed
+      return String.ofList trimmed
+
 /-- Exercise 11 — inverse of `map`. -/
 def reverseMap (n : Float) : IO (UInt16 × UInt16) := do
   if !(n ≥ 0.0 && n ≤ 1.0) then
@@ -33,5 +55,9 @@ def reverseMap (n : Float) : IO (UInt16 × UInt16) := do
     return (0, 0)
   let z := Float.floor (n * u32Max.toFloat + 0.5) |>.toUInt32
   return demorton z
+
+/-- Round-trip helper for tests. -/
+def reverseMapExact (x y : UInt16) : UInt16 × UInt16 :=
+  demorton (morton x y)
 
 end ReadySetBoole

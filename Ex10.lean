@@ -14,5 +14,5 @@ def main (args : List String) : IO UInt32 := do
     | _ =>
       IO.eprintln "usage: ex10 <u16> <u16>"
       return 1
-  IO.println (map x y)
+  IO.println (mapToString x y)
   return 0
