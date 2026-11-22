@@ -1,0 +1,54 @@
+name = "ReadySetBoole"
+version = "0.1.0"
+defaultTargets = ["ex00", "ex01", "ex02", "ex03", "ex04", "ex05", "ex06", "ex07", "ex08", "ex09", "ex10", "ex11"]
+
+[[lean_lib]]
+name = "ReadySetBoole"
+
+[[lean_exe]]
+name = "ex00"
+root = "Ex00"
+
+[[lean_exe]]
+name = "ex01"
+root = "Ex01"
+
+[[lean_exe]]
+name = "ex02"
+root = "Ex02"
+
+[[lean_exe]]
+name = "ex03"
+root = "Ex03"
+
+[[lean_exe]]
+name = "ex04"
+root = "Ex04"
+
+[[lean_exe]]
+name = "ex05"
+root = "Ex05"
+
+[[lean_exe]]
+name = "ex06"
+root = "Ex06"
+
+[[lean_exe]]
+name = "ex07"
+root = "Ex07"
+
+[[lean_exe]]
+name = "ex08"
+root = "Ex08"
+
+[[lean_exe]]
+name = "ex09"
+root = "Ex09"
+
+[[lean_exe]]
+name = "ex10"
+root = "Ex10"
+
+[[lean_exe]]
+name = "ex11"
+root = "Ex11"
